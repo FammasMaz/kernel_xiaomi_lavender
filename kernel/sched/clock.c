@@ -346,15 +346,29 @@ void sched_clock_idle_sleep_event(void)
 EXPORT_SYMBOL_GPL(sched_clock_idle_sleep_event);
 
 /*
+<<<<<<< HEAD
  * We just idled delta nanoseconds (called with irqs disabled):
+=======
+ * We just idled; resync with ktime.
+>>>>>>> 8749bdc968dd... cpuidle: Fix idle time tracking
  */
 void sched_clock_idle_wakeup_event(u64 delta_ns)
 {
-	if (timekeeping_suspended)
+	unsigned long flags;
+
+	if (sched_clock_stable())
 		return;
 
+	if (unlikely(timekeeping_suspended))
+		return;
+
+	local_irq_save(flags);
 	sched_clock_tick();
+<<<<<<< HEAD
 	touch_softlockup_watchdog_sched();
+=======
+	local_irq_restore(flags);
+>>>>>>> 8749bdc968dd... cpuidle: Fix idle time tracking
 }
 EXPORT_SYMBOL_GPL(sched_clock_idle_wakeup_event);
 
