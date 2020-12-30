@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "Cloning dependencies"
-git clone --depth=1 https://github.com/FammasMaz/kernel_xiaomi_lavender -b  EAS  kernel
+git clone --depth=1 https://github.com/FammasMaz/kernel_xiaomi_lavender -b  fbench  kernel
 cd kernel
 git clone --depth=1 https://github.com/kdrag0n/proton-clang clang
 git clone --depth=1 https://github.com/sohamxda7/AnyKernel3 AnyKernel
